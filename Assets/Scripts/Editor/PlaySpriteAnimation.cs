@@ -12,7 +12,7 @@ public class PlaySpriteAnimation : EditorWindow
         window.Show();
     }
     
-    private readonly EditorCurveBinding _rootSpriteBinding = new EditorCurveBinding
+    private static readonly EditorCurveBinding _rootSpriteBinding = new EditorCurveBinding
     {
         type = typeof(SpriteRenderer),
         path = "",
