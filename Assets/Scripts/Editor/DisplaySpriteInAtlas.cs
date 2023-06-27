@@ -3,7 +3,7 @@ using UnityEditor;
 
 public class DisplaySpriteInAtlas : EditorWindow
 {
-    [MenuItem("Window/Doodle/Display Sprite in Atlas")]
+    [MenuItem("Window/Doodle/Display Sprite in Atlas", false, 1)]
     private static void Init()
     {
         // Window Set-Up
@@ -23,16 +23,17 @@ public class DisplaySpriteInAtlas : EditorWindow
         if (_objects == null)
         {
             // Sprite from: https://opengameart.org/content/green-cap-character-16x18
-            var guid = AssetDatabase.FindAssets("Green-Cap-Character-16x18")[0];
+            var guid = AssetDatabase.FindAssets("Green-Cap-Character-16x18 t:texture")[0];
             var path = AssetDatabase.GUIDToAssetPath(guid);
             _objects = AssetDatabase.LoadAllAssetsAtPath(path);
         }
 
-        _DrawSprite(new Rect(100, 100, 100, 100), _objects[_index] as Sprite);
+        DrawOutlineReflection.DrawOutline(new Rect(100, 100, 100, 100), 1, Color.green);
+        DrawSprite(new Rect(100, 100, 100, 100), _objects[_index] as Sprite);
     }
 
     // Code from: https://forum.unity.com/threads/drawing-a-sprite-in-editor-window.419199/#post-3059891
-    private static void _DrawSprite(Rect position, Sprite sprite)
+    public static void DrawSprite(Rect position, Sprite sprite)
     {
         if (sprite == null) { return; }
         
